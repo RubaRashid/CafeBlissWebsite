@@ -1,0 +1,341 @@
+﻿
+  
+
+@{
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1" />
+
+    <title>Cafe Bliss</title>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #fffaf5;
+        }
+     
+        /* Navbar */
+
+        .navbar {
+            background-color: #1f1208;
+            padding: 5px 0;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-size: 34px;
+            font-weight: 700;
+        }
+
+        .navbar-brand span {
+            color: #c58b54;
+        }
+
+        .nav-link {
+            color: white !important;
+            margin-left: 20px;
+            font-size: 18px;
+            transition: 0.4s;
+        }
+
+        .nav-link:hover {
+            color: #c58b54 !important;
+        }
+
+        .login-btn {
+            background-color: #c58b54;
+            color: white !important;
+            padding: 10px 25px !important;
+            border-radius: 10px;
+            margin-left: 25px;
+        }
+
+        .login-btn:hover {
+            background-color: #a56f3f;
+        }
+
+        /* Footer */
+
+        footer {
+            background-color: #1f1208;
+            margin-top: 70px;
+            color: white;
+            padding-top: 70px;
+        }
+
+        .footer-logo {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .footer-logo span {
+            color: #c58b54;
+        }
+
+        .footer-text {
+            margin-top: 2px;
+            line-height: 22px;
+            color: #d6d6d6;
+        }
+
+        .footer-title {
+            font-size: 24px;
+            margin-top:25px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #d6d6d6;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: 0.4s;
+        }
+
+        .footer-links a:hover {
+            color: #c58b54;
+            margin-left: 5px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            color: #d6d6d6;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 20px;
+            padding: 20px 0;
+            text-align: center;
+            color: #d6d6d6;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 22px;
+            margin-right: 15px;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        .social-icons a:hover {
+            color: #c58b54;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+
+        <div class="container">
+
+            <a class="navbar-brand"
+               asp-controller="Home"
+               asp-action="Index">
+
+                <span> <img src="~/Images/CafeBlissLogoNew.png" alt="Alternate Text" width="100" height="100" /> </span>
+
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse"
+                 id="navbarNav">
+
+                <ul class="navbar-nav ms-auto align-items-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Home"
+                           asp-action="Index">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="#">
+                            Menu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="#">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="#">
+                            Contact
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link login-btn"
+                           href="#">
+                            Login
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- Page Content -->
+
+    <div>
+
+        @RenderBody()
+
+    </div>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Left -->
+
+                <div class="col-md-4">
+
+                    <h2 class="footer-logo">
+                        <span><img src="~/Images/CafeBlissLogoNew.png" alt="Alternate Text" width="150" height="150" /></span>
+                    </h2>
+
+                    <p class="footer-text">
+
+                        Good coffee, good mood.
+                        Visit us and enjoy the best
+                        coffee experience in town.
+
+                    </p>
+
+                    <div class="social-icons mt-3">
+
+                        <a href="#">📘</a>
+                        <a href="#">📷</a>
+                        <a href="#">🐦</a>
+                        <a href="#">▶</a>
+
+                    </div>
+
+                </div>
+
+                <!-- Middle -->
+
+                <div class="col-md-4">
+
+                    <h3 class="footer-title">
+                        Quick Links
+                    </h3>
+
+                    <div class="footer-links">
+
+                        <a href="#">Home</a>
+                        <a href="#">Menu</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Login</a>
+
+                    </div>
+
+                </div>
+
+                <!-- Right -->
+
+                <div class="col-md-4">
+
+                    <h3 class="footer-title">
+                        Contact Info
+                    </h3>
+
+                    <div class="footer-contact">
+
+                        <p>📍 Karachi, Pakistan</p>
+
+                        <p>📞 +92 300 1234567</p>
+
+                        <p>✉ cafebliss@gmail.com</p>
+
+                        <p>⏰ Mon - Sun : 8 AM - 11 PM</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Bottom -->
+
+            <div class="footer-bottom">
+
+                © 2026 Cafe Bliss. All Rights Reserved.
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html> 
+
