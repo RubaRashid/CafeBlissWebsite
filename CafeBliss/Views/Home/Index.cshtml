@@ -1,0 +1,364 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Custom Variables and Base Styles */
+    :root {
+        --primary-brown: #a87445;
+        --dark-bg: #150c07;
+        --light-bg: #faf8f5;
+        --text-dark: #3e2723;
+        --text-muted: #795548;
+    }
+
+    body {
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Typography & Utilities */
+    .script-font {
+        font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+        color: var(--primary-brown);
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+
+    .text-primary-brown {
+        color: var(--primary-brown) !important;
+    }
+
+    .text-muted-custom {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    /* Buttons */
+    .btn-brown {
+        background-color: var(--primary-brown);
+        color: white;
+        border: none;
+        padding: 10px 28px;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+        .btn-brown:hover {
+            background-color: #8c5d35;
+            color: white;
+        }
+
+    .btn-outline-play {
+        background: transparent;
+        color: white;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .btn-outline-play .play-icon {
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 3px; /* visual center for play triangle */
+        }
+
+    /* Section Styles */
+    .hero-section {
+        background-color: var(--dark-bg);
+        color: white;
+        padding: 80px 0;
+    }
+
+    .section-title {
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.2rem;
+    }
+
+    .separator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+        .separator::before, .separator::after {
+            content: "";
+            height: 1px;
+            width: 40px;
+            background-color: var(--primary-brown);
+            margin: 0 15px;
+        }
+
+    /* Cards */
+    .drink-card {
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        text-align: center;
+        padding-bottom: 20px;
+        background-color: white;
+        height: 100%;
+    }
+
+        .drink-card img {
+            border-radius: 8px 8px 0 0;
+            object-fit: cover;
+            height: 200px;
+            width: 100%;
+        }
+
+    .price-tag {
+        color: var(--primary-brown);
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-top: 10px;
+    }
+
+    /* Special Offer */
+    .special-offer-banner {
+        background-color: var(--dark-bg);
+        color: white;
+        border-radius: 12px;
+        padding: 50px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+
+    /* Features */
+    .feature-box {
+        text-align: center;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        height: 100%;
+    }
+
+    .feature-icon {
+        font-size: 1.8rem;
+        color: var(--primary-brown);
+        margin-bottom: 15px;
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+        background: white;
+        border: none;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        height: 100%;
+    }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 15px;
+    }
+
+    .stars {
+        color: #ffc107;
+        font-size: 0.9rem;
+    }
+</style>
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <p class="script-font">Start your day with</p>
+                <h1 class="display-3 fw-bold mb-0">Good Coffee</h1>
+                <h1 class="display-3 fw-bold mb-4">Good Mood</h1>
+                <p class="lead mb-4 text-light" style="font-size: 1.1rem; opacity: 0.9;">
+                    Freshly brewed coffee made with love.<br>
+                    Come, relax and enjoy the best coffee in town.
+                </p>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#" class="btn btn-brown">Explore Menu</a>
+                    <button class="btn btn-outline-play">
+                        <span class="play-icon">&#9658;</span> Watch Video
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="~/Images/heroMVC.jpeg" alt="Coffee Cup" class="img-fluid" style="max-width: 80%;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5 mt-4">
+    <h2 class="section-title">Our Popular Drinks</h2>
+    <div class="separator">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#a87445" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 8H17V4C17 2.9 16.1 2 15 2H5C3.9 2 3 2.9 3 4V14C3 15.1 3.9 16 5 16H15C16.1 16 17 15.1 17 14V13H18C20.2 13 22 11.2 22 9C22 6.8 20.2 5 18 5ZM18 11H17V7H18C19.1 7 20 7.9 20 9C20 10.1 19.1 11 18 11ZM20 19H2V21H20V19Z" />
+        </svg>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="drink-card">
+                <img src="~/Images/Drinks/Caramel-Cappucino.jpg" alt="Cappuccino">
+                <div class="pt-3 px-3">
+                    <h5 class="fw-bold mb-2">Cappuccino</h5>
+                    <p class="text-muted-custom mb-2">Smooth and creamy cappuccino made with love.</p>
+                    <div class="price-tag">Rs 450</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="drink-card">
+                <img src="~/Images/Drinks/Latte.jpg" alt="Café Latte">
+                <div class="pt-3 px-3">
+                    <h5 class="fw-bold mb-2">Café Latte</h5>
+                    <p class="text-muted-custom mb-2">Rich espresso blended with steamed milk.</p>
+                    <div class="price-tag">Rs 600</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="drink-card">
+                <img src="~/Images/Drinks/Mocha.jpg" alt="Mocha">
+                <div class="pt-3 px-3">
+                    <h5 class="fw-bold mb-2">Mocha</h5>
+                    <p class="text-muted-custom mb-2">Chocolatey and coffee together in perfect harmony.</p>
+                    <div class="price-tag">Rs 500</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="drink-card">
+                <img src="~/Images/Drinks/Americano.jpg" alt="Americano">
+                <div class="pt-3 px-3">
+                    <h5 class="fw-bold mb-2">Americano</h5>
+                    <p class="text-muted-custom mb-2">Espresso with hot water simple and strong.</p>
+                    <div class="price-tag">Rs 400</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="special-offer-banner">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <p class="script-font">Special Offer</p>
+                <h2 class="display-5 fw-bold mb-3">Buy 1 Get 1 Free<br>Every Saturday!</h2>
+                <p class="mb-4" style="opacity: 0.9;">Come with your friends and enjoy our special offer every Saturday.</p>
+                <a href="#" class="btn btn-brown">Order Now</a>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="~/Images/Herobackground.jpeg" alt="Special Offer" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <div class="separator">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#a87445" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 8H17V4C17 2.9 16.1 2 15 2H5C3.9 2 3 2.9 3 4V14C3 15.1 3.9 16 5 16H15C16.1 16 17 15.1 17 14V13H18C20.2 13 22 11.2 22 9C22 6.8 20.2 5 18 5ZM18 11H17V7H18C19.1 7 20 7.9 20 9C20 10.1 19.1 11 18 11ZM20 19H2V21H20V19Z" />
+        </svg>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-box">
+                <div class="feature-icon">&#9749;</div> <h6 class="fw-bold">Quality Coffee</h6>
+                <p class="text-muted-custom mb-0">We serve the highest quality coffee.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-box">
+                <div class="feature-icon">&#128186;</div> <h6 class="fw-bold">Cozy Place</h6>
+                <p class="text-muted-custom mb-0">A perfect place to relax and enjoy.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-box">
+                <div class="feature-icon">&#128512;</div> <h6 class="fw-bold">Friendly Staff</h6>
+                <p class="text-muted-custom mb-0">Our staff is always here to serve you.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-box">
+                <div class="feature-icon">&#129380;</div> <h6 class="fw-bold">Fast Service</h6>
+                <p class="text-muted-custom mb-0">Get your coffee fast and enjoy more.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5 mb-5">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <div class="separator">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#a87445" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 8H17V4C17 2.9 16.1 2 15 2H5C3.9 2 3 2.9 3 4V14C3 15.1 3.9 16 5 16H15C16.1 16 17 15.1 17 14V13H18C20.2 13 22 11.2 22 9C22 6.8 20.2 5 18 5ZM18 11H17V7H18C19.1 7 20 7.9 20 9C20 10.1 19.1 11 18 11ZM20 19H2V21H20V19Z" />
+        </svg>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="testimonial-card">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="~/Images/p1.jpg" alt="Hamid Khan" class="avatar">
+                    <div>
+                        <h6 class="fw-bold mb-1">Sara Khan</h6>
+                        <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    </div>
+                </div>
+                <p class="text-muted-custom fst-italic mb-0">"Amazing coffee and great environment. Highly recommended!"</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="testimonial-card">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="~/Images/p3.jpg" alt="Ali Raza" class="avatar">
+                    <div>
+                        <h6 class="fw-bold mb-1">Ali Raza</h6>
+                        <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    </div>
+                </div>
+                <p class="text-muted-custom fst-italic mb-0">"Best coffee in town! I love the atmosphere."</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="testimonial-card">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="~/Images/p2.jpg" alt="Mehwish Ali" class="avatar">
+                    <div>
+                        <h6 class="fw-bold mb-1">Mehwish Ali</h6>
+                        <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    </div>
+                </div>
+                <p class="text-muted-custom fst-italic mb-0">"Staff is friendly and coffee is always perfect."</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-4 gap-2">
+        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--primary-brown);"></div>
+        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #d1bfae;"></div>
+        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #d1bfae;"></div>
+        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #d1bfae;"></div>
+    </div>
+</section>
