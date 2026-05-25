@@ -19,6 +19,6 @@ app.UseRouting();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Menu}/{action=Menu}");
+    pattern: "{controller=Login}/{action=Login}");
 
 app.Run();
