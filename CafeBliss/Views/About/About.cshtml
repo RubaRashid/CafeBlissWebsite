@@ -1,0 +1,730 @@
+﻿
+@{
+    ViewData["Title"] = "About Us – CoffeeCafe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* ── Google Fonts ─────────────────────────────────────────── *@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+@* ── Page-scoped styles ───────────────────────────────────── *@
+<style>
+    /* ── Tokens ──────────────────────────────────────────── */
+    :root {
+        --cream: #f5f0e8;
+        --warm: #e8dcc8;
+        --espresso: #2c1a0e;
+        --roast: #5c3317;
+        --gold: #b8860b;
+        --text: #3a2a1a;
+        --muted: #7a6a5a;
+        --radius: 12px;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        color: var(--text);
+        background: var(--cream);
+    }
+
+    /* heading utility */
+    .display-font {
+        font-family: 'Playfair Display', serif;
+    }
+
+    /* ── Navbar override ─────────────────────────────────── */
+    .navbar-cafe {
+        background: var(--espresso);
+        padding: .85rem 2rem;
+    }
+
+        .navbar-cafe .navbar-brand {
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            letter-spacing: .03em;
+        }
+
+        .navbar-cafe .nav-link {
+            color: rgba(255,255,255,.8);
+            font-size: .9rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+            .navbar-cafe .nav-link:hover {
+                color: var(--gold);
+            }
+
+    .btn-login {
+        background: var(--gold);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: .4rem 1.2rem;
+        font-size: .85rem;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+    }
+
+        .btn-login:hover {
+            background: #9a6f0a;
+            color: #fff;
+        }
+
+    /* ── Hero ────────────────────────────────────────────── */
+    .hero-about {
+        position: relative;
+        background: var(--espresso);
+        min-height: 340px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+        .hero-about::before { /* subtle coffee-bean pattern overlay */
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><ellipse cx="30" cy="30" rx="10" ry="16" fill="none" stroke="%23ffffff08" stroke-width="1.5"/><line x1="30" y1="14" x2="30" y2="46" stroke="%23ffffff06" stroke-width="1"/></svg>') repeat;
+            opacity: .6;
+        }
+
+        .hero-about .badge-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: #fff;
+            font-size: .75rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            padding: .3rem .9rem;
+            border-radius: 30px;
+            margin-bottom: .9rem;
+        }
+
+        .hero-about h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: #fff;
+            line-height: 1.15;
+        }
+
+        .hero-about p {
+            color: rgba(255,255,255,.7);
+            font-size: 1.1rem;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+    /* ── Section helpers ─────────────────────────────────── */
+    .section-light {
+        background: var(--cream);
+    }
+
+    .section-warm {
+        background: var(--warm);
+    }
+
+    .section-dark {
+        background: var(--espresso);
+        color: #fff;
+    }
+
+    .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        letter-spacing: .02em;
+    }
+
+    .section-subtitle {
+        color: var(--gold);
+        font-size: .8rem;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        margin-bottom: .4rem;
+    }
+
+    .divider-gold {
+        width: 56px;
+        height: 3px;
+        background: var(--gold);
+        border-radius: 2px;
+        margin: .7rem auto 0;
+    }
+
+    /* ── About card ──────────────────────────────────────── */
+    .about-img {
+        border-radius: var(--radius);
+        object-fit: cover;
+        width: 100%;
+        height: 450px;
+        box-shadow: 0 16px 48px rgba(44,26,14,.25);
+    }
+
+    .about-text {
+        font-size: 1.05rem;
+        line-height: 1.85;
+        color: var(--text);
+    }
+
+        .about-text strong {
+            color: var(--roast);
+        }
+
+    /* ── Mission / Vision cards ──────────────────────────── */
+    .mv-card {
+        background: #fff;
+        border: 1px solid rgba(184,134,11,.2);
+        border-top: 4px solid var(--gold);
+        border-radius: var(--radius);
+        padding: 2rem 1.75rem;
+        height: 100%;
+        transition: transform .25s, box-shadow .25s;
+    }
+
+        .mv-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(44,26,14,.12);
+        }
+
+    .mv-icon {
+        font-size: 2.2rem;
+        margin-bottom: .8rem;
+    }
+
+    /* ── Process steps ───────────────────────────────────── */
+    .process-wrap {
+        position: relative;
+    }
+
+    .process-line {
+        position: absolute;
+        top: 42px;
+        left: 17%;
+        right: 17%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold) 0%, var(--roast) 100%);
+        z-index: 0;
+    }
+    @@media (max-width: 767px) {
+        .process-line
+
+    {
+        display: none;
+    }
+
+    }
+
+    .step-card {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .step-num {
+        width: 54px;
+        height: 54px;
+        background: var(--espresso);
+        color: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        margin: 0 auto 1rem;
+        border: 2px solid var(--gold);
+    }
+
+    .step-icon {
+        font-size: 2.6rem;
+        display: block;
+        margin-bottom: .5rem;
+    }
+
+    .step-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        color: var(--roast);
+    }
+
+    /* ── Timeline milestones ─────────────────────────────── */
+    .timeline {
+        display: flex;
+        align-items: flex-start;
+        gap: 0;
+        position: relative;
+    }
+
+    .tl-item {
+        flex: 1;
+        text-align: center;
+        position: relative;
+    }
+
+        .tl-item::before { /* connector line */
+            content: '';
+            position: absolute;
+            top: 22px;
+            left: 50%;
+            right: -50%;
+            height: 2px;
+            background: var(--gold);
+            z-index: 0;
+        }
+
+        .tl-item:last-child::before {
+            display: none;
+        }
+
+    .tl-dot {
+        width: 44px;
+        height: 44px;
+        background: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        margin: 0 auto .6rem;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 4px 12px rgba(184,134,11,.4);
+    }
+
+    .tl-year {
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        color: var(--gold);
+        font-weight: 600;
+    }
+
+    .tl-label {
+        font-size: .85rem;
+        color: var(--muted);
+    }
+
+    /* ── Team cards ──────────────────────────────────────── */
+    .team-card {
+        background: #fff;
+        border-radius: var(--radius);
+        overflow: hidden;
+        text-align: center;
+        padding: 2rem 1.5rem 1.5rem;
+        height: 100%;
+        transition: transform .25s, box-shadow .25s;
+        border: 1px solid rgba(184,134,11,.12);
+    }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 36px rgba(44,26,14,.14);
+        }
+
+    .team-avatar {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--gold);
+        margin-bottom: 1rem;
+    }
+
+    .team-role {
+        font-size: .78rem;
+        color: var(--gold);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        margin-bottom: .5rem;
+    }
+
+    .team-bio {
+        font-size: .9rem;
+        color: var(--muted);
+        line-height: 1.7;
+    }
+
+    /* ── Green promise ───────────────────────────────────── */
+    .promise-card {
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: var(--radius);
+        padding: 1.8rem 1.5rem;
+        text-align: center;
+        color: #fff;
+        height: 100%;
+    }
+
+    .promise-icon {
+        font-size: 2.8rem;
+        margin-bottom: .8rem;
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .cafe-footer {
+        background: #1a0e06;
+        color: rgba(255,255,255,.7);
+        font-size: .88rem;
+    }
+
+        .cafe-footer a {
+            color: rgba(255,255,255,.55);
+            text-decoration: none;
+        }
+
+            .cafe-footer a:hover {
+                color: var(--gold);
+            }
+
+    .footer-brand {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.35rem;
+        color: #fff;
+    }
+
+    .footer-heading {
+        color: #fff;
+        font-size: .75rem;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        margin-bottom: .9rem;
+    }
+
+    .footer-divider {
+        border-color: rgba(255,255,255,.08);
+    }
+
+    .social-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,.2);
+        color: rgba(255,255,255,.6);
+        font-size: 1rem;
+        text-decoration: none;
+        transition: background .2s, color .2s;
+    }
+
+        .social-btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
+        }
+</style>
+
+@* ═══════════════════════════════════════════════════════════
+   HERO SECTION
+═══════════════════════════════════════════════════════════ *@
+<section class="hero-about py-5">
+    <div class="container text-center position-relative" style="z-index:2">
+        <span class="badge-tag">Our Story</span>
+        <h1 class="mb-3">Our Journey &amp; Passion</h1>
+        <p class="mb-0">"Brewing happiness, one perfect cup at a time."</p>
+    </div>
+</section>
+
+
+@* ═══════════════════════════════════════════════════════════
+   ABOUT US — Description + image
+═══════════════════════════════════════════════════════════ *@
+<section class="section-light py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            @* Left: image *@
+            <div class="col-md-6">
+                @* Replace the src below with your actual image path, e.g. ~/images/cafe-interior.jpg *@
+                <img src="~/Images/About.jpeg"
+                     alt="Cosy CoffeeCafe interior"
+                     class="about-img"
+                     onerror="this.style.background='#3a2a1a';this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=80'" />
+            </div>
+
+            @* Right: text *@
+            <div class="col-md-6">
+                <p class="section-subtitle">About Us</p>
+                <h2 class="section-title mb-2"> <img src="~/Images/Cafelogo.png" alt="Alternate Text" width="170" /> </h2>
+                <div class="divider-gold mb-4" style="margin:0 0 1.5rem"></div>
+
+                <p class="about-text">
+                    At <strong>CoffeeCafe</strong>, we believe that a great cup of coffee can
+                    brighten your day. Our journey started with a simple idea: to serve the
+                    <strong>best coffee in town</strong> with love and passion.
+                </p>
+                <p class="about-text">
+                    We don't just sell coffee — we create <strong>
+                        moments of warmth and
+                        connection
+                    </strong> for our community. Every bean is selected, every
+                    roast is timed, and every cup is crafted with intention.
+                </p>
+                <p class="about-text mb-0">
+                    Come as a stranger, leave as family. That's the CoffeeCafe promise.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+@* ═══════════════════════════════════════════════════════════
+   MISSION & VISION
+═══════════════════════════════════════════════════════════ *@
+<section class="section-warm py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="section-subtitle">What Drives Us</p>
+            <h2 class="section-title">Mission &amp; Vision</h2>
+            <div class="divider-gold mx-auto mt-2"></div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            @* Mission card *@
+            <div class="col-md-5">
+                <div class="mv-card">
+                    <div class="mv-icon">🎯</div>
+                    <h4 class="display-font mb-3" style="color:var(--roast)">Our Mission</h4>
+                    <p class="mb-0" style="color:var(--muted);line-height:1.8">
+                        To serve every guest an <strong>exceptional coffee experience</strong>
+                        — sourced ethically, roasted locally, and brewed with skill — while
+                        building a welcoming space where community comes first.
+                    </p>
+                </div>
+            </div>
+
+            @* Vision card *@
+            <div class="col-md-5">
+                <div class="mv-card">
+                    <div class="mv-icon">🌟</div>
+                    <h4 class="display-font mb-3" style="color:var(--roast)">Our Vision</h4>
+                    <p class="mb-0" style="color:var(--muted);line-height:1.8">
+                        To become the <strong>most loved neighbourhood café</strong> — a
+                        destination that inspires people, supports farmers, and proves that
+                        good coffee and a good conscience go hand-in-hand.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+@* ═══════════════════════════════════════════════════════════
+   BEAN-TO-CUP PROCESS
+═══════════════════════════════════════════════════════════ *@
+<section class="section-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="section-subtitle">Our Craft</p>
+            <h2 class="section-title">The Bean-to-Cup Process</h2>
+            <div class="divider-gold mx-auto mt-2"></div>
+        </div>
+
+        <div class="row process-wrap g-4 text-center position-relative">
+            @* connecting line (hidden on mobile via CSS) *@
+            @* <div class="process-line d-none d-md-block"></div> *@
+
+            @* Step 1 *@
+            <div class="col-12 col-md-4 step-card">
+                <span class="step-icon">🌱</span>
+                <div class="step-num">01</div>
+                <h5 class="step-title mt-2">Sourcing</h5>
+                <p class="mt-2" style="color:var(--muted);font-size:.93rem">
+                    We handpick 100% Arabica organic beans from premium farms across
+                    Ethiopia, Colombia, and Guatemala.
+                </p>
+            </div>
+
+            @* Step 2 *@
+            <div class="col-12 col-md-4 step-card">
+                <span class="step-icon">🔥</span>
+                <div class="step-num">02</div>
+                <h5 class="step-title mt-2">Roasting</h5>
+                <p class="mt-2" style="color:var(--muted);font-size:.93rem">
+                    Roasted locally in small batches for maximum freshness. Our
+                    roast master fine-tunes each profile to unlock peak flavour.
+                </p>
+            </div>
+
+            @* Step 3 *@
+            <div class="col-12 col-md-4 step-card">
+                <span class="step-icon">☕</span>
+                <div class="step-num">03</div>
+                <h5 class="step-title mt-2">Brewing</h5>
+                <p class="mt-2" style="color:var(--muted);font-size:.93rem">
+                    Crafted by our expert baristas with pure love — every shot
+                    pulled, every milk steamed, every cup served with care.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@* ═══════════════════════════════════════════════════════════
+   OUR ROOTS — Timeline
+═══════════════════════════════════════════════════════════ *@
+<section class="section-warm py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="section-subtitle">Timeline / Milestones</p>
+            <h2 class="section-title">Our Roots</h2>
+            <div class="divider-gold mx-auto mt-2"></div>
+        </div>
+
+        <div class="timeline px-2 px-md-5">
+
+            <div class="tl-item">
+                <div class="tl-dot">🛒</div>
+                <div class="tl-year">2022</div>
+                <div class="fw-bold mt-1">The First Dream</div>
+                <div class="tl-label mt-1">Started as a small cosy coffee cart at the local market.</div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot">🏪</div>
+                <div class="tl-year">2024</div>
+                <div class="fw-bold mt-1">Expanding the Family</div>
+                <div class="tl-label mt-1">Opened our second branch with a bigger seating area and full menu.</div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot">💻</div>
+                <div class="tl-year">2026</div>
+                <div class="fw-bold mt-1">Going Digital</div>
+                <div class="tl-label mt-1">Launching our online café — order, explore, and connect from anywhere.</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+@* MEET OUR TEAM*@
+<section class="section-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="section-subtitle">The People Behind the Cup</p>
+            <h2 class="section-title">Meet Our Coffee Experts</h2>
+            <div class="divider-gold mx-auto mt-2"></div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            @* Team member 1 *@
+            <div class="col-sm-6 col-md-4">
+                <div class="team-card">
+                    <img src="~/Images/p1.jpg"
+                         alt="Alex Smith" class="team-avatar" />
+                    <p class="team-role">Head Barista</p>
+                    <h5 class="display-font mb-2">Alex Smith</h5>
+                    <p class="team-bio">
+                        Alex brings a clean, minimalist brewing philosophy to every cup.
+                        With 8 years of experience, he's our espresso champion.
+                    </p>
+                </div>
+            </div>
+
+            @* Team member 2 *@
+            <div class="col-sm-6 col-md-4">
+                <div class="team-card">
+                    <img src="~/Images/p2.jpg"
+                         alt="Sarah Johnson" class="team-avatar" />
+                    <p class="team-role">Roaster Master</p>
+                    <h5 class="display-font mb-2">Sarah Johnson</h5>
+                    <p class="team-bio">
+                        Sarah's nose for flavour profiles is legendary. She curates our
+                        seasonal roast menu and sources directly from partner farms.
+                    </p>
+                </div>
+            </div>
+
+            @* Team member 3 *@
+            <div class="col-sm-6 col-md-4">
+                <div class="team-card">
+                    <img src="~/Images/p3.jpg"
+                         alt="Marco Rivera" class="team-avatar" />
+                    <p class="team-role">Café Manager</p>
+                    <h5 class="display-font mb-2">Marco Rivera</h5>
+                    <p class="team-bio">
+                        Marco keeps the whole operation running smoothly. He's the first
+                        smile you see and the last light turned off every night.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section-dark py-5 mt-0" style="padding-bottom:20px">
+    <div class="container">
+        <div class="text-center mb-4">
+            <p class="section-subtitle" style="color:var(--gold)">Sustainability</p>
+            <h2 class="section-title text-white">Our Green Promise</h2>
+            <div class="divider-gold mx-auto mt-2 mb-3"></div>
+            <p class="text-white-50 fst-italic">
+                "We care for the planet as much as we care for your coffee."
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-sm-6 col-md-3">
+                <div class="promise-card">
+                    <div class="promise-icon">♻️</div>
+                    <h6 class="display-font">Eco-Friendly Packaging</h6>
+                    <p class="mt-2 mb-0" style="font-size:.85rem;color:rgba(255,255,255,.6)">
+                        100% compostable cups, lids, and bags — zero single-use plastic.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="promise-card">
+                    <div class="promise-icon">🌾</div>
+                    <h6 class="display-font">Fair Trade Rewards</h6>
+                    <p class="mt-2 mb-0" style="font-size:.85rem;color:rgba(255,255,255,.6)">
+                        We pay fair prices directly to farmers, ensuring better livelihoods.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="promise-card">
+                    <div class="promise-icon">💧</div>
+                    <h6 class="display-font">Water Conservation</h6>
+                    <p class="mt-2 mb-0" style="font-size:.85rem;color:rgba(255,255,255,.6)">
+                        Our brewing equipment is optimised to use 30% less water daily.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="promise-card">
+                    <div class="promise-icon">🌳</div>
+                    <h6 class="display-font">Tree Planting</h6>
+                    <p class="mt-2 mb-0" style="font-size:.85rem;color:rgba(255,255,255,.6)">
+                        One cup sold = one tree planted. We've planted 12,000+ trees so far.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
